@@ -22,6 +22,9 @@ public class Skills {
 	String skills;
 	
 	
+	public Skills() {
+	}
+	
 	public Skills(String skills) {
 		this.skills=skills;
 	}
