@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -13,7 +14,6 @@ public class MentorProfile {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private String nNumber;
 	private String mentorAvailability;
 	private String mentorSkillSetExperience;
 	private String mentorTimeFrameAvailable;
@@ -24,13 +24,9 @@ public class MentorProfile {
 	public MentorProfile() {
 	}
 
-	@OneToOne(mappedBy = "MentorProfile")
-	private User user;
-
 	public MentorProfile(String nNumber, String mentorAvailability, String mentorSkillSetExperience,
 			String mentorTimeFrameAvailable, String mentorContactMethod, String mentorBestContact,
 			Double mentorAvailabilityHours) {
-		this.nNumber = nNumber;
 		this.mentorAvailability = mentorAvailability;
 		this.mentorSkillSetExperience = mentorSkillSetExperience;
 		this.mentorTimeFrameAvailable = mentorTimeFrameAvailable;
@@ -71,14 +67,6 @@ public class MentorProfile {
 		this.mentorAvailabilityHours = mentorAvailabilityHours;
 	}
 
-	public String getnNumber() {
-		return nNumber;
-	}
-
-	public void setnNumber(String nNumber) {
-		this.nNumber = nNumber;
-	}
-
 	public String getMentorContactMethod() {
 		return mentorContactMethod;
 	}
@@ -101,14 +89,6 @@ public class MentorProfile {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }

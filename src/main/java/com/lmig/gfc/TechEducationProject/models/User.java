@@ -2,12 +2,15 @@ package com.lmig.gfc.TechEducationProject.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-@Entity
+@Entity(name="masterUser")
 public class User {
 
 	@Id
@@ -24,7 +27,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Request> requests;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private MentorProfile profile;
 
 	public User(String nNumber, String userNameLast, String userNameFirst, String userOffice, String userDepartment,
@@ -83,5 +86,22 @@ public class User {
 
 	public void setUserMarket(String userMarket) {
 		this.userMarket = userMarket;
+	}
+
+	public List<Request> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
+	}
+
+	
+	public MentorProfile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(MentorProfile profile) {
+		this.profile = profile;
 	}
 }
