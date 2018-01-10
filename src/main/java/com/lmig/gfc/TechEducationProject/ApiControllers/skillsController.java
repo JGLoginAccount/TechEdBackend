@@ -1,6 +1,5 @@
 package com.lmig.gfc.TechEducationProject.ApiControllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lmig.gfc.TechEducationProject.models.Skills;
 import com.lmig.gfc.TechEducationProject.repositories.skillsRepository;
-
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,27 +26,25 @@ public class skillsController {
 
 	@GetMapping("")
 	public List<Skills> getSkills() {
-		
-		List<Skills> skills=skillR.findAll();
+
+		List<Skills> skills = skillR.findAll();
 
 		return skills;
 
 	}
-	
+
 	@PostMapping("/remove")
 	public void removeSkill(Long id) {
-		
+
 		skillR.delete(id);
-	
-		
+
 	}
-	
+
 	@PostMapping("/add")
 	public void addSkill(@RequestBody Skills skill) {
-		
+
 		skillR.save(skill);
-	
-		
+
 	}
-	
-	}
+
+}

@@ -1,18 +1,19 @@
 package com.lmig.gfc.TechEducationProject.models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class RequestForm {
-
+@Entity
+public class UserRequestForm {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long requestId;
+	private Long id;
 	@Column(length = 8)
-	private String NNUMBER;
+	private String nNumber;
 	@Column(length = 15)
 	private String userNameLast;
 	@Column(length = 15)
@@ -27,19 +28,15 @@ public class RequestForm {
 	private String userBestMethod;
 	@Column(length = 30)
 	private String userBestMethodDescription;
-	
-	
-	
-	public RequestForm() {
-		
+
+	public UserRequestForm() {
+
 	}
 
-
-
-	public RequestForm(String NNUMBER, String userNameLast, String userNameFirst, String userOffice,
+	public UserRequestForm(String nNumber, String userNameLast, String userNameFirst, String userOffice,
 			String userDepartment, String market, String userBestMethod, String userBestMethodDescription) {
 		super();
-		this.NNUMBER = NNUMBER;
+		this.nNumber = nNumber;
 		this.userNameLast = userNameLast;
 		this.userNameFirst = userNameFirst;
 		this.userOffice = userOffice;
@@ -49,117 +46,92 @@ public class RequestForm {
 		this.userBestMethodDescription = userBestMethodDescription;
 	}
 
-
-
 	public String getNNUMBER() {
-		return NNUMBER;
+		return nNumber;
 	}
 
-
-
-	public void setNNUMBER(String nNUMBER) {
-		NNUMBER = nNUMBER;
+	public void setNNUMBER(String nNumber) {
+		this.nNumber = nNumber;
 	}
-
-
 
 	public String getUserNameLast() {
 		return userNameLast;
 	}
 
-
-
 	public void setUserNameLast(String userNameLast) {
 		this.userNameLast = userNameLast;
 	}
-
-
 
 	public String getUserNameFirst() {
 		return userNameFirst;
 	}
 
-
-
 	public void setUserNameFirst(String userNameFirst) {
 		this.userNameFirst = userNameFirst;
 	}
-
-
 
 	public String getUserOffice() {
 		return userOffice;
 	}
 
-
-
 	public void setUserOffice(String userOffice) {
 		this.userOffice = userOffice;
 	}
-
-
 
 	public String getUserDepartment() {
 		return userDepartment;
 	}
 
-
-
 	public void setUserDepartment(String userDepartment) {
 		this.userDepartment = userDepartment;
 	}
-
-
 
 	public String getMarket() {
 		return market;
 	}
 
-
-
 	public void setMarket(String market) {
 		this.market = market;
 	}
-
-
 
 	public String getUserBestMethod() {
 		return userBestMethod;
 	}
 
-
-
 	public void setUserBestMethod(String userBestMethod) {
 		this.userBestMethod = userBestMethod;
 	}
-
-
 
 	public String getUserBestMethodDescription() {
 		return userBestMethodDescription;
 	}
 
-
-
 	public void setUserBestMethodDescription(String userBestMethodDescription) {
 		this.userBestMethodDescription = userBestMethodDescription;
 	}
 
-
-
 	public long getRequestId() {
-		return requestId;
+		return id;
 	}
-
-
 
 	public void setRequestId(long requestId) {
-		this.requestId = requestId;
+		this.id = requestId;
 	}
-	
-	
-	
-	
-	
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getnNumber() {
+		return nNumber;
+	}
+
+	public void setnNumber(String nNumber) {
+		this.nNumber = nNumber;
+	}
+
 }
