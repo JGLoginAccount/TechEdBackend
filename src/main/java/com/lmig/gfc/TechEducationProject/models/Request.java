@@ -1,14 +1,26 @@
 package com.lmig.gfc.TechEducationProject.models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Request {
 
 	@Id
 	private String nNumber;
-	private String menteeRequestedDate;
+
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(timezone = "EST")
+	private Date menteeRequestedDate;
+
 	private String menteeSkillRequested;
 	private String menteeSkillOtherText;
 	private String menteeTimeRequested;
@@ -16,15 +28,17 @@ public class Request {
 	private String menteeRequestDescription;
 	private String menteeRequestStatus;
 	private String menteeCompletedSummary;
-	private String menteeRequestedClosed;
 
 	public Request() {
-
 	}
 
-	public Request(String nNumber, String menteeRequestedDate, String menteeSkillRequested, String menteeSkillOtherText,
+	@JsonIgnore
+	@ManyToOne
+	private User user;
+
+	public Request(String nNumber, Date menteeRequestedDate, String menteeSkillRequested, String menteeSkillOtherText,
 			String menteeTimeRequested, String menteeHoursRequested, String menteeRequestDescription,
-			String menteeRequestStatus, String menteeCompletedSummary, String menteeRequestedClosed) {
+			String menteeRequestStatus, String menteeCompletedSummary) {
 		this.nNumber = nNumber;
 		this.menteeRequestedDate = menteeRequestedDate;
 		this.menteeSkillRequested = menteeSkillRequested;
@@ -34,14 +48,13 @@ public class Request {
 		this.menteeRequestDescription = menteeRequestDescription;
 		this.menteeRequestStatus = menteeRequestStatus;
 		this.menteeCompletedSummary = menteeCompletedSummary;
-		this.menteeRequestedClosed = menteeRequestedClosed;
 	}
 
-	public String getMenteeRequestedDate() {
+	public Date getMenteeRequestedDate() {
 		return menteeRequestedDate;
 	}
 
-	public void setMenteeRequestedDate(String menteeRequestedDate) {
+	public void setMenteeRequestedDate(Date menteeRequestedDate) {
 		this.menteeRequestedDate = menteeRequestedDate;
 	}
 
@@ -99,14 +112,6 @@ public class Request {
 
 	public void setMenteeCompletedSummary(String menteeCompletedSummary) {
 		this.menteeCompletedSummary = menteeCompletedSummary;
-	}
-
-	public String getMenteeRequestedClosed() {
-		return menteeRequestedClosed;
-	}
-
-	public void setMenteeRequestedClosed(String menteeRequestedClosed) {
-		this.menteeRequestedClosed = menteeRequestedClosed;
 	}
 
 	public String getnNumber() {

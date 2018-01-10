@@ -1,7 +1,11 @@
 package com.lmig.gfc.TechEducationProject.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -13,23 +17,24 @@ public class User {
 	private String userOffice;
 	private String userDepartment;
 	private String userMarket;
-	private String userBestMethod;
-	private String userBestMethodDescription;
 
 	public User() {
-
 	}
 
+	@OneToMany(mappedBy = "user")
+	private List<UserRequestForm> requests;
+
+	@OneToOne
+	private Profile profile;
+
 	public User(String nNumber, String userNameLast, String userNameFirst, String userOffice, String userDepartment,
-			String userMarket, String userBestMethod, String userBestMethodDescription) {
+			String userMarket) {
 		this.nNumber = nNumber;
 		this.userNameLast = userNameLast;
 		this.userNameFirst = userNameFirst;
 		this.userOffice = userOffice;
 		this.userDepartment = userDepartment;
 		this.userMarket = userMarket;
-		this.userBestMethod = userBestMethod;
-		this.userBestMethodDescription = userBestMethodDescription;
 	}
 
 	public String getnNumber() {
@@ -79,21 +84,4 @@ public class User {
 	public void setUserMarket(String userMarket) {
 		this.userMarket = userMarket;
 	}
-
-	public String getUserBestMethod() {
-		return userBestMethod;
-	}
-
-	public void setUserBestMethod(String userBestMethod) {
-		this.userBestMethod = userBestMethod;
-	}
-
-	public String getUserBestMethodDescription() {
-		return userBestMethodDescription;
-	}
-
-	public void setUserBestMethodDescription(String userBestMethodDescription) {
-		this.userBestMethodDescription = userBestMethodDescription;
-	}
-
 }

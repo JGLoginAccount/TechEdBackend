@@ -2,6 +2,7 @@ package com.lmig.gfc.TechEducationProject.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Profile {
@@ -11,18 +12,25 @@ public class Profile {
 	private String mentorAvailability;
 	private String mentorSkillSetExperience;
 	private String mentorTimeFrameAvailable;
-	private String mentorAvailabilityHours;
+	private String mentorContactMethod;
+	private String mentorBestContact;
+	private Double mentorAvailabilityHours;
 
 	public Profile() {
-
 	}
 
+	@OneToOne(mappedBy = "profile")
+	private User user;
+
 	public Profile(String nNumber, String mentorAvailability, String mentorSkillSetExperience,
-			String mentorTimeFrameAvailable, String mentorAvailabilityHours) {
+			String mentorTimeFrameAvailable, String mentorContactMethod, String mentorBestContact,
+			Double mentorAvailabilityHours) {
 		this.nNumber = nNumber;
 		this.mentorAvailability = mentorAvailability;
 		this.mentorSkillSetExperience = mentorSkillSetExperience;
 		this.mentorTimeFrameAvailable = mentorTimeFrameAvailable;
+		this.mentorContactMethod = mentorContactMethod;
+		this.mentorBestContact = mentorBestContact;
 		this.mentorAvailabilityHours = mentorAvailabilityHours;
 	}
 
@@ -50,11 +58,11 @@ public class Profile {
 		this.mentorTimeFrameAvailable = mentorTimeFrameAvailable;
 	}
 
-	public String getMentorAvailabilityHours() {
+	public Double getMentorAvailabilityHours() {
 		return mentorAvailabilityHours;
 	}
 
-	public void setMentorAvailabilityHours(String mentorAvailabilityHours) {
+	public void setMentorAvailabilityHours(Double mentorAvailabilityHours) {
 		this.mentorAvailabilityHours = mentorAvailabilityHours;
 	}
 
@@ -64,6 +72,22 @@ public class Profile {
 
 	public void setnNumber(String nNumber) {
 		this.nNumber = nNumber;
+	}
+
+	public String getMentorContactMethod() {
+		return mentorContactMethod;
+	}
+
+	public void setMentorContactMethod(String mentorContactMethod) {
+		this.mentorContactMethod = mentorContactMethod;
+	}
+
+	public String getMentorBestContact() {
+		return mentorBestContact;
+	}
+
+	public void setMentorBestContact(String mentorBestContact) {
+		this.mentorBestContact = mentorBestContact;
 	}
 
 }
