@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lmig.gfc.TechEducationProject.models.UserRequestForm;
+import com.lmig.gfc.TechEducationProject.models.Request;
 import com.lmig.gfc.TechEducationProject.repositories.RequestRepository;
 
 @RestController
@@ -27,7 +27,7 @@ public class RequestController {
 	}
 
 	@GetMapping("")
-	public List<UserRequestForm> getAll() {
+	public List<Request> getAll() {
 
 		return requestRepo.findAll();
 
@@ -35,7 +35,7 @@ public class RequestController {
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public UserRequestForm createRequest(@RequestBody UserRequestForm request) {
+	public Request createRequest(@RequestBody Request request) {
 
 		return requestRepo.save(request);
 

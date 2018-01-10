@@ -22,10 +22,10 @@ public class User {
 	}
 
 	@OneToMany(mappedBy = "user")
-	private List<UserRequestForm> requests;
+	private List<Request> requests;
 
 	@OneToOne
-	private Profile profile;
+	private MentorProfile profile;
 
 	public User(String nNumber, String userNameLast, String userNameFirst, String userOffice, String userDepartment,
 			String userMarket) {

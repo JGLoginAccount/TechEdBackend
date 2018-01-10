@@ -1,13 +1,18 @@
 package com.lmig.gfc.TechEducationProject.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Profile {
+public class MentorProfile {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
 	private String nNumber;
 	private String mentorAvailability;
 	private String mentorSkillSetExperience;
@@ -16,13 +21,13 @@ public class Profile {
 	private String mentorBestContact;
 	private Double mentorAvailabilityHours;
 
-	public Profile() {
+	public MentorProfile() {
 	}
 
-	@OneToOne(mappedBy = "profile")
+	@OneToOne(mappedBy = "MentorProfile")
 	private User user;
 
-	public Profile(String nNumber, String mentorAvailability, String mentorSkillSetExperience,
+	public MentorProfile(String nNumber, String mentorAvailability, String mentorSkillSetExperience,
 			String mentorTimeFrameAvailable, String mentorContactMethod, String mentorBestContact,
 			Double mentorAvailabilityHours) {
 		this.nNumber = nNumber;
@@ -88,6 +93,22 @@ public class Profile {
 
 	public void setMentorBestContact(String mentorBestContact) {
 		this.mentorBestContact = mentorBestContact;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

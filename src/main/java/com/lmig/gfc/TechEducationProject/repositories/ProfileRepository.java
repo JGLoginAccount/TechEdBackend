@@ -3,9 +3,10 @@ package com.lmig.gfc.TechEducationProject.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.lmig.gfc.TechEducationProject.models.Request;
+import com.lmig.gfc.TechEducationProject.models.MentorProfile;
 
 @Repository
-public interface RequestRepository extends JpaRepository<Request, Long> {
+
+public interface ProfileRepository extends JpaRepository<MentorProfile, Long> {
 
 }
