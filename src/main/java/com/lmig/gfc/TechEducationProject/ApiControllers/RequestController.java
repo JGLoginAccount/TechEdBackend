@@ -27,18 +27,14 @@ public class RequestController {
 	}
 
 	@GetMapping("")
-	public List<Request> getAll() {
-
-		return requestRepo.findAll();
-
+	public List<Request> getAll(@RequestBody Request request) {
+		return requestRepo.getResults(request.getMenteeSkillRequested());
 	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Request createRequest(@RequestBody Request request) {
-
 		return requestRepo.save(request);
-
 	}
 
 }
