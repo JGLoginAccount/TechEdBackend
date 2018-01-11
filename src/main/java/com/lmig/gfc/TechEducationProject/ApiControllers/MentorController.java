@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lmig.gfc.TechEducationProject.models.MentorProfile;
+import com.lmig.gfc.TechEducationProject.models.MentorSkills;
+import com.lmig.gfc.TechEducationProject.repositories.MentorSkillsRepository;
 import com.lmig.gfc.TechEducationProject.repositories.ProfileRepository;
 
 @RestController
@@ -19,6 +21,8 @@ public class MentorController {
 
 	@Autowired
 	private ProfileRepository profileRepo;
+	@Autowired
+	private MentorSkillsRepository mentorSkillsRepo;
 
 	public MentorController() {
 		// TODO Auto-generated constructor stub
@@ -40,5 +44,21 @@ public class MentorController {
 
 		return profileRepo.save(profile);
 
+	}
+
+	public ProfileRepository getProfileRepo() {
+		return profileRepo;
+	}
+
+	public void setProfileRepo(ProfileRepository profileRepo) {
+		this.profileRepo = profileRepo;
+	}
+
+	public MentorSkillsRepository getMentorSkillsRepo() {
+		return mentorSkillsRepo;
+	}
+
+	public void setMentorSkillsRepo(MentorSkillsRepository mentorSkillsRepo) {
+		this.mentorSkillsRepo = mentorSkillsRepo;
 	}
 }

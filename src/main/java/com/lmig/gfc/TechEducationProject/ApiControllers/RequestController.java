@@ -27,14 +27,26 @@ public class RequestController {
 	}
 
 	@GetMapping("")
-	public List<Request> getAll(@RequestBody Request request) {
-		return requestRepo.getResults(request.getMenteeSkillRequested());
+	public List<Request> getAll() {
+		return requestRepo.findAll();
 	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Request createRequest(@RequestBody Request request) {
-		return requestRepo.save(request);
+	public List<Object[]> createRequest(@RequestBody Request request) {
+		
+		requestRepo.save(request);
+	
+		return requestRepo.getResults(request.getMenteeSkillRequested());
+		
+	}
+
+	public RequestRepository getRequestRepo() {
+		return requestRepo;
+	}
+
+	public void setRequestRepo(RequestRepository requestRepo) {
+		this.requestRepo = requestRepo;
 	}
 
 }

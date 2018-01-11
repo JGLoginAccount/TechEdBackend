@@ -13,9 +13,9 @@ import com.lmig.gfc.TechEducationProject.models.Request;
 public interface RequestRepository extends JpaRepository<Request, Long> {
 
 	@Query("SELECT u.userNameFirst, u.userNameLast, u.userOffice, u.userDepartment, u.userMarket, "
-			+ "mp.mentorSkillSetExperience, mp.mentorTimeFrameAvailable, mp.mentorContactMethod, "
-			+ "mp.mentorBestContact FROM " + "MentorProfile mp, masterUser u, Request r WHERE "
-			+ "mp.mentorAvailability = 'YES' AND :menteeSkillRequested = mentorSkillSetExperience")
-	public List<Request> getResults(@Param("menteeSkillRequested") String menteeSkillRequested);
+			+ "ms.mentorSkillSetExperience, mp.mentorTimeFrameAvailable, mp.mentorContactMethod, "
+			+ "mp.mentorBestContact FROM " + "MentorProfile mp, masterUser u, Request r, MentorSkills ms WHERE "
+			+ "mp.mentorAvailability = 'YES' AND :menteeSkillRequested in (ms.mentorSkillSetExperience)")
+	public List<Object[]> getResults(@Param("menteeSkillRequested") String menteeSkillRequested );
 
 }

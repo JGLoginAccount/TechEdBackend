@@ -1,10 +1,15 @@
 package com.lmig.gfc.TechEducationProject.models;
 
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -20,7 +25,9 @@ public class Skills {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	String skills;
-	
+	@ManyToMany(mappedBy="mentorSkills")
+	@JsonIgnore
+	private List<MentorProfile> mentorProfile;
 	
 	public Skills() {
 	}
@@ -48,6 +55,16 @@ public class Skills {
 	public void setSkills(String skills) {
 		this.skills = skills;
 	}
+
+	public List<MentorProfile> getMentorProfile() {
+		return mentorProfile;
+	}
+
+	public void setMentorProfile(List<MentorProfile> mentorProfile) {
+		this.mentorProfile = mentorProfile;
+	}
+
+
 	
 	
 	
