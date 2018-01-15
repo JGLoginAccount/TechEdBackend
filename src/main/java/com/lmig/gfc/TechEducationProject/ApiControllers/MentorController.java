@@ -3,7 +3,10 @@ package com.lmig.gfc.TechEducationProject.ApiControllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sound.midi.SysexMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lmig.gfc.TechEducationProject.models.MentorProfile;
 import com.lmig.gfc.TechEducationProject.models.MentorSkills;
+import com.lmig.gfc.TechEducationProject.models.Skills;
 import com.lmig.gfc.TechEducationProject.repositories.MentorSkillsRepository;
 import com.lmig.gfc.TechEducationProject.repositories.ProfileRepository;
+import com.lmig.gfc.TechEducationProject.repositories.skillsRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -26,6 +31,8 @@ public class MentorController {
 	private ProfileRepository profileRepo;
 	@Autowired
 	private MentorSkillsRepository mentorSkillsRepo;
+	@Autowired
+	private skillsRepository skillRepo;
 
 	public MentorController() {
 		// TODO Auto-generated constructor stub
@@ -45,27 +52,40 @@ public class MentorController {
 
 	@PutMapping("{id}")
 	@CrossOrigin(origins = "*")
-	public MentorProfile updateProfile(@RequestBody MentorProfile profile, @PathVariable long id) {
+	public MentorProfile updateProfile(@RequestBody MentorProfile profile,@PathVariable long id) {
 
 		profile.setId(id);
-
+		
 		return profileRepo.save(profile);
 
 	}
+	
+	@PutMapping("skills/{id}")
+	@CrossOrigin(origins = "*")
+	public MentorProfile UpdateSkills(@RequestBody String[] skills,@PathVariable long id) {
 
-	public ProfileRepository getProfileRepo() {
-		return profileRepo;
-	}
+		MentorProfile profile=profileRepo.findOne(id);
+		
+		List<Skills> skillList = new ArrayList <Skills> ();
+		
+		
+		for (int i=0;i<skills.length;i=i+1) {
+			
+			Skills skill =new Skills();
+			
+			skill.setId(skillRepo.findOneByString(skills[i]));
+			
+			skill.setSkills(skills[i]);
+			
+			skillList.add(skill);
+		}
 
-	public void setProfileRepo(ProfileRepository profileRepo) {
-		this.profileRepo = profileRepo;
-	}
+		profile.setMentorSkills(skillList);
+		return profileRepo.save(profile);
 
-	public MentorSkillsRepository getMentorSkillsRepo() {
-		return mentorSkillsRepo;
 	}
-
-	public void setMentorSkillsRepo(MentorSkillsRepository mentorSkillsRepo) {
-		this.mentorSkillsRepo = mentorSkillsRepo;
-	}
+	
+	
+	
+	
 }
