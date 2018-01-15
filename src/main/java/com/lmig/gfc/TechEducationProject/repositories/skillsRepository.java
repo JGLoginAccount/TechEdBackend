@@ -15,7 +15,7 @@ import com.lmig.gfc.TechEducationProject.models.Skills;
 public interface skillsRepository extends JpaRepository<Skills,Long> {
 
 	
-	@Query("SELECT max(id) FROM Skills WHERE :skill in (skill)")
+	@Query("SELECT max(id) FROM Skills WHERE skills in (:skill)")
 	public Long  findOneByString(@Param("skill") String skill);
 
 
