@@ -1,5 +1,8 @@
 package com.lmig.gfc.TechEducationProject.ApiControllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +33,13 @@ public class MentorController {
 
 	@GetMapping("{id}")
 	@CrossOrigin(origins = "*")
-	public MentorProfile getAll(@PathVariable long id) {
+	public List<MentorProfile> getAll(@PathVariable long id) {
+		
+		ArrayList <MentorProfile> mentorProfile = new ArrayList <MentorProfile> ();
 
-		return profileRepo.findOne(id);
+		mentorProfile.add(profileRepo.findOne(id));
+		
+		return mentorProfile;
 
 	}
 
