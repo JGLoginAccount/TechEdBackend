@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +24,7 @@ public class Request {
 
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(timezone = "EST")
+	@CreationTimestamp
 	private Date menteeRequestedDate;
 
 	private String menteeSkillRequested;
