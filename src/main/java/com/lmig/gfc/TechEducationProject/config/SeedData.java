@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.lmig.gfc.TechEducationProject.models.MentorProfile;
 import com.lmig.gfc.TechEducationProject.models.Skills;
+import com.lmig.gfc.TechEducationProject.models.User;
 import com.lmig.gfc.TechEducationProject.repositories.ProfileRepository;
 import com.lmig.gfc.TechEducationProject.repositories.UserRepository;
 import com.lmig.gfc.TechEducationProject.repositories.skillsRepository;
@@ -25,7 +26,19 @@ public class SeedData {
 		
 		MentorProfile ment = new MentorProfile("N0026982", "yes", "Within One Week", "Email",
 				"x@X.com", 6.0);
-	
+		
+		User dataUser = new User("N0026982", "Franco", "Harris", "Boston",
+				"Personal", "PM");
+		
+		User dataUser2 = new User("N0211099", "John", "Griswold", "Boston",
+				"Personal", "PM");
+		
+		dataUser.setProfile(ment);
+		
+		user.save(dataUser2);
+		
+		user.save(dataUser);
+		
 		skills.save(skills2);
 		
 		List<Skills> skillsSir = new ArrayList<Skills>();
