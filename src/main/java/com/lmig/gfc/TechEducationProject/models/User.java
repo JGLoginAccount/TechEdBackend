@@ -1,107 +1,146 @@
 package com.lmig.gfc.TechEducationProject.models;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-@Entity(name="masterUser")
-public class User {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+@Entity (name = "appUsers")
+@Table(name = "appUsers")
+public class User implements UserDetails {
+
+	// @OneToMany(mappedBy = "user")
+	// private List<Request> requests;
+
+	
 	@Id
-	private String nNumber;
-	private String userNameLast;
-	private String userNameFirst;
-	private String userOffice;
-	private String userDepartment;
-	private String userMarket;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+
+
+	private static final long serialVersionUID = 1L;
+
+
+	@Column(nullable = false)
+	private String password;
+
+	@Column(nullable = false)
+	private String firstName;
+
+	@Column(nullable = false)
+	private String lastName;
+
+	@Column(nullable = false, unique = true)
+	private String username;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private MentorProfile profile;
 
 	public User() {
 	}
-
-	@OneToMany(mappedBy = "user")
-	private List<Request> requests;
-
-	@OneToOne(cascade=CascadeType.ALL)
-	private MentorProfile profile;
-
-	public User(String nNumber, String userNameLast, String userNameFirst, String userOffice, String userDepartment,
-			String userMarket) {
-		this.nNumber = nNumber;
-		this.userNameLast = userNameLast;
-		this.userNameFirst = userNameFirst;
-		this.userOffice = userOffice;
-		this.userDepartment = userDepartment;
-		this.userMarket = userMarket;
-	}
-
-	public String getnNumber() {
-		return nNumber;
-	}
-
-	public void setnNumber(String nNumber) {
-		this.nNumber = nNumber;
-	}
-
-	public String getUserNameLast() {
-		return userNameLast;
-	}
-
-	public void setUserNameLast(String userNameLast) {
-		this.userNameLast = userNameLast;
-	}
-
-	public String getUserNameFirst() {
-		return userNameFirst;
-	}
-
-	public void setUserNameFirst(String userNameFirst) {
-		this.userNameFirst = userNameFirst;
-	}
-
-	public String getUserOffice() {
-		return userOffice;
-	}
-
-	public void setUserOffice(String userOffice) {
-		this.userOffice = userOffice;
-	}
-
-	public String getUserDepartment() {
-		return userDepartment;
-	}
-
-	public void setUserDepartment(String userDepartment) {
-		this.userDepartment = userDepartment;
-	}
-
-	public String getUserMarket() {
-		return userMarket;
-	}
-
-	public void setUserMarket(String userMarket) {
-		this.userMarket = userMarket;
-	}
-
-	public List<Request> getRequests() {
-		return requests;
-	}
-
-	public void setRequests(List<Request> requests) {
-		this.requests = requests;
-	}
-
 	
-	public MentorProfile getProfile() {
-		return profile;
-	}
+	  public User(String firstName, String lastName, String userName, String password) {
+	        this.firstName = firstName;
+	        this.lastName = lastName;
+	        this.username = userName;
+	        this.password = password;
 
-	public void setProfile(MentorProfile profile) {
-		this.profile = profile;
-	}
+	    }
+
+	    @Override
+	    public boolean isAccountNonExpired() {
+	        return true;
+	    }
+
+	    @Override
+	    public boolean isAccountNonLocked() {
+	        return true;
+	    }
+
+	    @Override
+	    public boolean isCredentialsNonExpired() {
+	        return true;
+	    }
+
+	    @Override
+	    public boolean isEnabled() {
+	        return true;
+	    }
+
+	    public Long getId() {
+	        return id;
+	    }
+
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
+
+	    public void setPassword(String password) {
+	        this.password = password;
+	    }
+
+	    // public void setUsername(String email) {
+	    // this.username = email;
+	    // }
+
+	    @Override
+	    public String getUsername() {
+	        return username;
+	    }
+
+	    @Override
+	    public String getPassword() {
+	        return password;
+	    }
+
+	    @Override
+	    public Collection<? extends GrantedAuthority> getAuthorities() {
+	        // TODO Auto-generated method stub
+	        return null;
+	    }
+
+	    public String getFirstName() {
+	        return firstName;
+	    }
+
+	    public void setFirstName(String firstName) {
+	        this.firstName = firstName;
+	    }
+
+	    public String getLastName() {
+	        return lastName;
+	    }
+
+	    public void setLastName(String lastName) {
+	        this.lastName = lastName;
+	    }
+
+		public String getUserName() {
+			return username;
+		}
+
+		public void setUserName(String userName) {
+			this.username = userName;
+		}
+
+		public MentorProfile getProfile() {
+			return profile;
+		}
+
+		public void setProfile(MentorProfile profile) {
+			this.profile = profile;
+		}
+
 }

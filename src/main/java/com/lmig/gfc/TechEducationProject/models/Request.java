@@ -38,10 +38,6 @@ public class Request {
 	public Request() {
 	}
 
-	@JsonIgnore
-	@ManyToOne
-	private User user;
-
 	public Request(String nNumber, Date menteeRequestedDate, String menteeSkillRequested, String menteeSkillOtherText,
 			String menteeTimeRequested, String menteeHoursRequested, String menteeRequestDescription,
 			String menteeRequestStatus, String menteeCompletedSummary) {

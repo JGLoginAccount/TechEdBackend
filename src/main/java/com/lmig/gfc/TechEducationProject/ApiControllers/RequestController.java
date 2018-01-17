@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lmig.gfc.TechEducationProject.models.MentorProfile;
 import com.lmig.gfc.TechEducationProject.models.Request;
+import com.lmig.gfc.TechEducationProject.repositories.ProfileRepository;
 import com.lmig.gfc.TechEducationProject.repositories.RequestRepository;
+import com.lmig.gfc.TechEducationProject.repositories.skillsRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -22,6 +25,13 @@ public class RequestController {
 
 	@Autowired
 	private RequestRepository requestRepo;
+
+	@Autowired
+	private skillsRepository skillRepo;
+
+	@Autowired
+	private ProfileRepository profileRepo;
+
 
 	public RequestController() {
 	}
@@ -33,13 +43,18 @@ public class RequestController {
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public List<Object[]> createRequest(@RequestBody Request request) {
-		
+	public List<MentorProfile> createRequest(@RequestBody Request request) {
 		requestRepo.save(request);
-	
-		return requestRepo.getResults(request.getMenteeSkillRequested());
-		
+
+		System.out.println(profileRepo
+				.findAllByMentorSkills(skillRepo.findOne(skillRepo.findOneByString(request.getMenteeSkillRequested())))
+				.get(0).getMentorSkills().get(0).getSkills());
+
+		return profileRepo
+				.findAllByMentorSkills(skillRepo.findOne(skillRepo.findOneByString(request.getMenteeSkillRequested())));
+
 	}
+		
 
 	public RequestRepository getRequestRepo() {
 		return requestRepo;

@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.lmig.gfc.TechEducationProject.models.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
+	User findByusername(String username);
+	
 }

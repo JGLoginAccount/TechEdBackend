@@ -10,6 +10,7 @@ import com.lmig.gfc.TechEducationProject.models.MentorProfile;
 import com.lmig.gfc.TechEducationProject.models.RequestStatus;
 import com.lmig.gfc.TechEducationProject.models.Skills;
 import com.lmig.gfc.TechEducationProject.models.TimeFrame;
+import com.lmig.gfc.TechEducationProject.models.User;
 import com.lmig.gfc.TechEducationProject.repositories.ContactMethodRepository;
 import com.lmig.gfc.TechEducationProject.repositories.ProfileRepository;
 import com.lmig.gfc.TechEducationProject.repositories.RequestStatusRepository;
@@ -17,12 +18,19 @@ import com.lmig.gfc.TechEducationProject.repositories.TimeFrameRepository;
 import com.lmig.gfc.TechEducationProject.repositories.UserRepository;
 import com.lmig.gfc.TechEducationProject.repositories.skillsRepository;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Configuration
 public class SeedData {
 
 	public SeedData(RequestStatusRepository requestRepo, TimeFrameRepository timeRepo,
 			ContactMethodRepository contactRepo, skillsRepository skills, UserRepository user,
-			ProfileRepository mentRepo) {
+			ProfileRepository mentRepo, PasswordEncoder encoder) {
+		
+
+		User admin = user.save(new User("admin", "user", "admin@admin.com", encoder.encode("password")));
+		
 
 		skills.save(new Skills("Angular"));
 		skills.save(new Skills("C++"));
@@ -107,10 +115,5 @@ public class SeedData {
 		requestRepo.save(new RequestStatus("In Progress"));
 		requestRepo.save(new RequestStatus("Closed"));
 
-		// user.save(dataUser);
-		// user.save(dataUser2);
-		// user.save(dataUser3);
-		// user.save(dataUser4);
-		// user.save(dataUser5);
 	}
 }
