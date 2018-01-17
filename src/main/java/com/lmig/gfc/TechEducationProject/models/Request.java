@@ -26,7 +26,7 @@ public class Request {
 	@JsonFormat(timezone = "EST")
 	@CreationTimestamp
 	private Date menteeRequestedDate;
-
+	private String nNumber;
 	private String menteeSkillRequested;
 	private String menteeSkillOtherText;
 	private String menteeTimeRequested;
@@ -45,6 +45,7 @@ public class Request {
 	public Request(String nNumber, Date menteeRequestedDate, String menteeSkillRequested, String menteeSkillOtherText,
 			String menteeTimeRequested, String menteeHoursRequested, String menteeRequestDescription,
 			String menteeRequestStatus, String menteeCompletedSummary) {
+		this.nNumber = nNumber;
 		this.menteeRequestedDate = menteeRequestedDate;
 		this.menteeSkillRequested = menteeSkillRequested;
 		this.menteeSkillOtherText = menteeSkillOtherText;
@@ -119,5 +120,12 @@ public class Request {
 		this.menteeCompletedSummary = menteeCompletedSummary;
 	}
 
+	public String getnNumber() {
+		return nNumber;
+	}
+
+	public void setnNumber(String nNumber) {
+		this.nNumber = nNumber;
+	}
 
 }
