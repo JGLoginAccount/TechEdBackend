@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.lmig.gfc.TechEducationProject.models.ContactMethod;
 import com.lmig.gfc.TechEducationProject.models.MentorProfile;
@@ -18,19 +19,14 @@ import com.lmig.gfc.TechEducationProject.repositories.TimeFrameRepository;
 import com.lmig.gfc.TechEducationProject.repositories.UserRepository;
 import com.lmig.gfc.TechEducationProject.repositories.skillsRepository;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 @Configuration
 public class SeedData {
 
 	public SeedData(RequestStatusRepository requestRepo, TimeFrameRepository timeRepo,
 			ContactMethodRepository contactRepo, skillsRepository skills, UserRepository user,
 			ProfileRepository mentRepo, PasswordEncoder encoder) {
-		
 
 		User admin = user.save(new User("admin", "user", "admin@admin.com", encoder.encode("password")));
-		
 
 		skills.save(new Skills("Angular"));
 		skills.save(new Skills("C++"));
@@ -43,23 +39,30 @@ public class SeedData {
 		Skills skills4 = new Skills("Python");
 		Skills skills5 = new Skills("TypeScript");
 
-		MentorProfile ment = new MentorProfile("N0026982", "yes", "Next Week", "Email", "5@5.com", 5.0);
+		MentorProfile ment = new MentorProfile("N0026982", "Mentor", "One", "Dover", "yes", "Next Week", 5.0, "Email",
+				"1@1.com");
 		// User dataUser = new User("N0026982", "Clark", "Griswold", "Chicago",
 		// "Personal", "PM");
 
-		MentorProfile ment2 = new MentorProfile("N0211099", "yes", "Next Three Weeks", "Skype", "skype call", 6.0);
+		MentorProfile ment2 = new MentorProfile("N2222222", "Mentor", "Two", "Portsmouth", "yes", "Next Two Weeks",
+				10.0, "Phone", "222-222-2222");
 		// User dataUser2 = new User("N0211099", "Ellen", "Griswold", "Chicago",
 		// "Personal", "PM");
 
-		MentorProfile ment3 = new MentorProfile("N0333333", "no", "Next Two Weeks", "Phone", "777-777-7777", 7.0);
+		MentorProfile ment3 = new MentorProfile("N3333333", "Mentor", "Three", "Indianpolis", "no", "", 0.0, "Phone",
+				"333-333-3333");
+
 		// User dataUser3 = new User("N0333333", "Rusty", "Griswold", "Chicago",
 		// "Personal", "PM");
 
-		MentorProfile ment4 = new MentorProfile("N0444444", "yes", "Next Week", "Phone", "888-888-8888", 8.0);
+		MentorProfile ment4 = new MentorProfile("N4444444", "Mentor", "Four", "Seattle", "yes", "One Month or More",
+				10.0, "Email", "4@4.com");
 		// contactRepoUser dataUser4 = new User("N0444444", "Audrey", "Griswold",
 		// "Chicago", "Personal", "PM");
 
-		MentorProfile ment5 = new MentorProfile("N0555555", "yes", "One Month Or More", "Email", "9@9.com", 9.0);
+		MentorProfile ment5 = new MentorProfile("N5555555", "Mentor", "Five", "Fairfield", "yes", "Next Three Weeks",
+				15.0, "Skype", "use lync");
+
 		// User dataUser5 = new User("N0555555", "Eddie", "Johnson", "Coolidge",
 		// "Personal", "PM");
 

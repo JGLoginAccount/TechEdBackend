@@ -46,10 +46,7 @@ public class RequestController {
 	public List<MentorProfile> createRequest(@RequestBody Request request) {
 		requestRepo.save(request);
 
-		System.out.println(profileRepo
-				.findAllByMentorSkills(skillRepo.findOne(skillRepo.findOneByString(request.getMenteeSkillRequested())))
-				.get(0).getMentorSkills().get(0).getSkills());
-
+		
 		return profileRepo
 				.findAllByMentorSkills(skillRepo.findOne(skillRepo.findOneByString(request.getMenteeSkillRequested())));
 

@@ -7,9 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class MentorProfile {
@@ -19,7 +16,10 @@ public class MentorProfile {
 	private long id;
 
 	private String mentorAvailability;
-
+	private String mentorNnumber;
+	private String mentorFirstName;
+	private String mentorLastName;
+	private String mentorOffice;
 	private String mentorTimeFrameAvailable;
 	private String mentorContactMethod;
 	private String mentorBestContact;
@@ -30,14 +30,19 @@ public class MentorProfile {
 	public MentorProfile() {
 	}
 
-	public MentorProfile(String nNumber, String mentorAvailability,
-			String mentorTimeFrameAvailable, String mentorContactMethod, String mentorBestContact,
-			Double mentorAvailabilityHours) {
+	public MentorProfile(String mentorNnumber, String mentorFirstName, String mentorLastName, String mentorOffice,
+			String mentorAvailability, String mentorTimeFrameAvailable, Double mentorAvailabilityHours,
+			String mentorContactMethod, String mentorBestContact) {
+
+		this.mentorNnumber = mentorNnumber;
+		this.mentorFirstName = mentorFirstName;
+		this.mentorLastName = mentorLastName;
+		this.mentorOffice = mentorOffice;
 		this.mentorAvailability = mentorAvailability;
 		this.mentorTimeFrameAvailable = mentorTimeFrameAvailable;
+		this.mentorAvailabilityHours = mentorAvailabilityHours;
 		this.mentorContactMethod = mentorContactMethod;
 		this.mentorBestContact = mentorBestContact;
-		this.mentorAvailabilityHours = mentorAvailabilityHours;
 	}
 
 	public String getMentorAvailability() {
@@ -47,8 +52,6 @@ public class MentorProfile {
 	public void setMentorAvailability(String mentorAvailability) {
 		this.mentorAvailability = mentorAvailability;
 	}
-
-
 
 	public String getMentorTimeFrameAvailable() {
 		return mentorTimeFrameAvailable;
@@ -98,4 +101,37 @@ public class MentorProfile {
 		this.mentorSkills = mentorSkills;
 	}
 
+	public String getMentorNnumber() {
+		return mentorNnumber;
+	}
+
+	public void setMentorNnumber(String mentorNnumber) {
+		this.mentorNnumber = mentorNnumber;
+	}
+
+	public String getMentorFirstName() {
+		return mentorFirstName;
+	}
+
+	public void setMentorFirstName(String mentorFirstName) {
+		this.mentorFirstName = mentorFirstName;
+	}
+
+	public String getMentorLastName() {
+		return mentorLastName;
+	}
+
+	public void setMentorLastName(String mentorLastName) {
+		this.mentorLastName = mentorLastName;
+	}
+
+	public String getMentorOffice() {
+		return mentorOffice;
+	}
+
+	public void setMentorOffice(String mentorOffice) {
+		this.mentorOffice = mentorOffice;
+	}
+
 }
+
