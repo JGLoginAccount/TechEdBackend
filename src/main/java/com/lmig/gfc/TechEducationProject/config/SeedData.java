@@ -26,8 +26,14 @@ public class SeedData {
 			ContactMethodRepository contactRepo, skillsRepository skills, UserRepository user,
 			ProfileRepository mentRepo, PasswordEncoder encoder) {
 
-		User admin = user.save(new User("admin", "user", "admin@admin.com", encoder.encode("password")));
-
+		User admin = user.save(new User("admin", "user", "admin", encoder.encode("password")));
+		
+		MentorProfile adminMent = new MentorProfile("admin", "Admin", "User", "Dover", "yes", "Next Week", 5.0, "Email",
+				"1@1.com");
+		
+		mentRepo.save(adminMent);
+		
+	
 		skills.save(new Skills("Angular"));
 		skills.save(new Skills("C++"));
 		skills.save(new Skills("CSS"));

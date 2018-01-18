@@ -1,8 +1,12 @@
 package com.lmig.gfc.TechEducationProject.ApiControllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lmig.gfc.TechEducationProject.models.MentorProfile;
 import com.lmig.gfc.TechEducationProject.models.User;
+import com.lmig.gfc.TechEducationProject.repositories.ProfileRepository;
 
 
 
@@ -29,6 +35,8 @@ public class SessionApiController {
 
     private UserDetailsService userDetails;
     private AuthenticationManager authenticator;
+    @Autowired
+	private ProfileRepository profileRepo;
 
     public SessionApiController(UserDetailsService userDetails, AuthenticationManager authenticator) {
         this.userDetails = userDetails;
@@ -39,7 +47,26 @@ public class SessionApiController {
     @GetMapping("/mine")
     public Long getLoggedInUserIdBecauseThatSoundsFunEvenThoughItMayNotActuallyBeFunInTheTrueSenseOfTheWord(Authentication auth) {
         if (auth != null) {
-            return ((User) auth.getPrincipal()).getId();
+            return profileRepo.findAllBymentorNnumber(((User) auth.getPrincipal()).getUserName()).getId();
+        }
+        return null;
+    }
+    
+    
+    //gets currently logged in user
+    @GetMapping("/mine/login")
+    public List<MentorProfile> getLoggedInUserIdBecauseThat(Authentication auth) {
+        if (auth != null) {
+        	
+        	MentorProfile mentorProfile;
+        	
+        	ArrayList <MentorProfile> mentorProfiles = new ArrayList <MentorProfile> ();
+
+    		mentorProfile=profileRepo.findAllBymentorNnumber(((User) auth.getPrincipal()).getUserName());
+        	
+    		mentorProfiles.add(mentorProfile);
+    		
+            return mentorProfiles;
         }
         return null;
     }
