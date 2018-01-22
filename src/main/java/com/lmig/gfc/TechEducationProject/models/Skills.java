@@ -3,6 +3,7 @@ package com.lmig.gfc.TechEducationProject.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Skills {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	String skills;
-	@ManyToMany(mappedBy="mentorSkills")
+	@ManyToMany(mappedBy="mentorSkills",  cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JsonIgnore
 	private List<MentorProfile> mentorProfile;
 	
