@@ -30,7 +30,7 @@ public class Request {
 	private String menteeSkillRequested;
 	private String menteeSkillOtherText;
 	private String menteeTimeRequested;
-	private String menteeHoursRequested;
+	private String menteeHoursRequested; 
 	private String menteeRequestDescription;
 	private String menteeRequestStatus;
 	private String menteeCompletedSummary;
@@ -122,6 +122,14 @@ public class Request {
 
 	public void setnNumber(String nNumber) {
 		this.nNumber = nNumber;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

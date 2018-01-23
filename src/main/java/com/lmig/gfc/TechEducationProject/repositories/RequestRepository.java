@@ -12,8 +12,16 @@ import com.lmig.gfc.TechEducationProject.models.Request;
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long> {
 
-	@Query("select DISTINCT s.skills, u.lastName, u.firstName, mp.mentorTimeFrameAvailable, mp.mentorContactMethod, mp.mentorBestContact from appUsers u,  MentorProfile mp,  Skills s  where skills=(:menteeSkillRequested) AND mentor_availability='yes'")
-	public List<Object[]> getResults(@Param("menteeSkillRequested") String menteeSkillRequested );
+	@Query("SELECT id FROM Request WHERE nNumber in (:nNumber)")
+	public List<Long>  findAllByString(@Param("nNumber") String nNumber);
+	
+	@Query("SELECT count(id) FROM Request WHERE nNumber in (:nNumber)")
+	public int  sumofRequests(@Param("nNumber") String nNumber);
+	
+	
+	@Query("SELECT max(id) FROM Request WHERE nNumber in (:nNumber)")
+	public int  maxRequest(@Param("nNumber") String nNumber); 
+
 
 	
 	
